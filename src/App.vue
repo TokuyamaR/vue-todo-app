@@ -1,5 +1,22 @@
 <template name="component-name">
   <h1>Todo App</h1>
+  <form v-on:submit.prevent="addTodo">
+    <label>
+      New Todo
+    </label>
+    <input v-model="newTodo" name="newTodo" autocomplete="off" />
+    <button>Add Todo</button>
+  </form>
+  <h2>Todo List</h2>
+  <ul>
+    <li v-for="(todo, index) in todos" v-bind:key="index">
+      <span :class="{ done: todo.done }" v-on:click="doneTodo(todo)">{{
+        todo.content
+      }}</span>
+      <button v-on:click="removeTodo(index)">Remove</button>
+    </li>
+  </ul>
+  <h4 v-if="todos.length === 0">There is nothing to do.</h4>
 </template>
 
 <script>
