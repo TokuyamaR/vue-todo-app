@@ -10,9 +10,12 @@
   <h2>Todo List</h2>
   <ul>
     <li v-for="(todo, index) in todos" v-bind:key="index">
-      <span :class="{ done: todo.done }" v-on:click="doneTodo(todo)">{{
-        todo.content
-      }}</span>
+      <span
+        v-if="!todo.isEdited"
+        :class="{ done: todo.done }"
+        v-on:click="doneTodo(todo)"
+        >{{ todo.content }}</span
+      >
       <button v-on:click="removeTodo(index)">Remove</button>
     </li>
   </ul>
